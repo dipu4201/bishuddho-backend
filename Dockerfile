@@ -38,8 +38,15 @@ RUN chown -R www-data:www-data \
 # Laravel production optimizations
 RUN php artisan package:discover --ansi
 
+
+
+
+
 EXPOSE 10000
 
-CMD php artisan serve \
+CMD php artisan migrate --force && \
+    php artisan serve \
     --host=0.0.0.0 \
     --port=${PORT:-10000}
+    --host=0.0.0.0 \
+    --t=${PORTPORT
